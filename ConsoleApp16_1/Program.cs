@@ -22,19 +22,28 @@ namespace ConsoleApp3_4
 
             for (int i = 0; i < 5; i++)
             {
-                Console.WriteLine("Введите код товара {0}", i + 1);
-                int code = Convert.ToInt32(Console.ReadLine());
-                Console.WriteLine("Введите название товара {0}", i + 1);
-                string name = Console.ReadLine();
-                Console.WriteLine("Введите стоимость товара {0}", i + 1);
-                double cost = double.Parse(Console.ReadLine().Replace(".", ","));
-                Product product = new Product()
+                try
                 {
-                    Code = code,
-                    Name = name,
-                    Cost = cost
-                };
-                products.Add(product);
+
+                    Console.WriteLine("Введите код товара {0}", i + 1);
+                    int code = Convert.ToInt32(Console.ReadLine());
+                    Console.WriteLine("Введите название товара {0}", i + 1);
+                    string name = Console.ReadLine();
+                    Console.WriteLine("Введите стоимость товара {0}", i + 1);
+                    double cost = double.Parse(Console.ReadLine().Replace(".", ","));
+                    Product product = new Product()
+                    {
+                        Code = code,
+                        Name = name,
+                        Cost = cost
+                    };
+                    products.Add(product);
+                }
+                catch
+                {
+                    Console.WriteLine("Не число");
+                    i --;
+                }
             }
 
             JsonSerializerOptions options = new JsonSerializerOptions()
